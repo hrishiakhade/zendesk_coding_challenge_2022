@@ -1,0 +1,16 @@
+{
+  "name": "zendesk-coding-challenge-2022",
+  "version": "1.0.0",
+  "description": "Server for Zendesk Coding Challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hrushikesh Akhade",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
