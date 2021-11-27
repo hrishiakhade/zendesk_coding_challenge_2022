@@ -5,7 +5,7 @@ const api = axios.create({
 })
 
 
-export function getTickets() {
+export function getTickets(currentPage) {
   return api.get('/')
     .then((res) => {
       return res.data

@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.ticket-numbers-ul {
+  max-width: 500px;
+  list-style: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 1rem auto;
+  overflow: hidden;
+  padding: 5px;
+}
+
+
+.ticket-number-li{
+  border: 0.5px solid lightgrey;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
