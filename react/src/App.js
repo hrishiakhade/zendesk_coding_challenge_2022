@@ -36,7 +36,7 @@ export default class App extends Component {
     getTickets()
       .then(res => {
         if (res === 401) {
-          this.setState({ error: { message: strings }, loading: false })
+          this.setState({ error: { message: strings.network_auth_error }, loading: false })
         } else if (res === 404) {
           this.setState({ error: { message: strings.network_api_error }, loading: false })
         } else if (res === strings.network_error_header) {
@@ -81,7 +81,7 @@ export default class App extends Component {
           error ? <ErrorComponenet message={this.state?.error?.message} /> :
             totalTickets > 0 ?
               <div>
-                <p>Total Tickets : {totalTickets}</p>
+                <p>{strings.total_tickets} {totalTickets}</p>
                 {<p>Page {currentPage + 1} of {totalPages}</p>}
                 <Pagination
                   currentPage={currentPage}

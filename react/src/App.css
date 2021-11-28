@@ -32,7 +32,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding-right: 5px
+  padding-right: 15px;
 }
 
 @keyframes App-logo-spin {
@@ -107,11 +107,36 @@
 }
 
 
+.ticket-numbers-ul {
+  max-width: 500px;
+  list-style: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 1rem auto;
+  overflow: hidden;
+  padding: 5px;
+}
+
+
+.ticket-number-li{
+  border: 0.5px solid lightgrey;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.error__message {
+  color: red;
+}
 .error {
   background: white;
-  border: 2px solid salmon;
   border-radius: 5px;
-  width: 400px;
   padding: 5px;
   margin: 40px auto;
 }
