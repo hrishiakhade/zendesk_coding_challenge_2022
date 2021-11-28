@@ -4,6 +4,11 @@ import './App.css';
 import Header from './components/Header'
 import strings from './utils/constants/strings.js'
 import { getTotalPages, getPaginatedTickets } from './utils/common-helpers'
+import Pagination from './components/Pagination';
+import TicketList from './components/TicketList';
+import TicketDetailsModal from './components/TicketDetailsModal';
+import ErrorComponenet from './components/ErrorMsg';
+import loader from './assets/loader.svg'
 
 export default class App extends Component {
   state = {
@@ -11,100 +16,98 @@ export default class App extends Component {
     error: null,
     currentPage: 0,
     ticketsPerPage: 25,
-    selectedTicket: undefined,
+    selectedTicket: null,
     totalTickets: 0,
     totalPages: 0,
-    currentPageTickets: null
+    currentPageTickets: null,
+    loading: false
   }
 
 
 
-  onSelectTicket = (id) => {
-    const selectedTicket = this.state.tickets.filter(ticket => ticket.id === id)
-    this.setState({ selectedTicket: selectedTicket })
+  onClickTicket = (ticketData) => {
+    console.log("ticketData===", ticketData);
+    this.setState({ selectedTicket: ticketData })
+
   }
-
-  onClearSelectedTicket = () => {
-    this.setState({ selectedTicket: undefined })
-  }
-
-
 
   componentDidMount() {
+    this.setState({ loading: true })
     getTickets()
       .then(res => {
-        console.log("res==", res.length);
         if (res === 401) {
-          this.setState({ error: { message: strings } })
+          this.setState({ error: { message: strings }, loading: false })
         } else if (res === 404) {
-          this.setState({ error: { message: strings.network_api_error } })
+          this.setState({ error: { message: strings.network_api_error }, loading: false })
         } else if (res === strings.network_error_header) {
-          this.setState({ error: { message: strings.network_api_error_msg } })
+          this.setState({ error: { message: strings.network_api_error_msg }, loading: false })
         } else {
           this.state.totalTickets = res?.length ? res.length : 0;
           this.state.totalPages = getTotalPages(this.state.ticketsPerPage, this.state.totalTickets);
           this.state.tickets = getPaginatedTickets(this.state.ticketsPerPage, res, this.state.totalPages);
           this.setState({
             tickets: this.state.tickets,
-            currentPageTickets: this.state.tickets[this.state.currentPage]
-          }, () => {
-            console.log("currentPageTickets====", this.state.currentPageTickets);
+            loading: false,
+            currentPageTickets: this.state.tickets[this.state.currentPage],
+            error: null
           })
         }
       })
-      .catch(error => this.setState({ error }))
+      .catch(error => this.setState({ error, loading: false }))
   }
 
   onPageChange = (newPageNumber) => {
-    if(newPageNumber>-1){
+    if (newPageNumber > -1) {
       this.setState({
         currentPage: newPageNumber,
-        currentPageTickets:this.state.tickets?.length ? this.state.tickets[newPageNumber] : []
+        currentPageTickets: this.state.tickets?.length ? this.state.tickets[newPageNumber] : []
       })
     }
   }
 
-  ticketListView = () => {
-    let listArray = []
-    for (let i = 0; i < this.state.totalPages; i++) {
-      listArray.push(
-        <li class={`page-item ${this.state.currentPage === i ? 'active' : ''}`} key={i} id={i} onClick={() => this.onPageChange(i)}>
-          <a class="page-link" href="#" >{i + 1}</a>
-        </li>
-      )
-    }
-    return listArray
-  }
-
-  renderPaginationView = () => {
-    return (
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class={`page-item ${this.state.currentPage===0 ? 'disabled' : ''}`} onClick={()=>this.onPageChange(this.state.currentPage-1)}>
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo; </span>
-            </a>
-          </li>
-          {this.ticketListView()}
-          <li class={`page-item ${this.state.currentPage === (this.state.totalPages - 1) ? "disabled" : ''}`} onClick={()=>this.onPageChange(this.state.currentPage+1)}>
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo; </span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    )
+  resetSelectedTicket = () => {
+    this.setState({
+      selectedTicket: null
+    })
   }
 
   render() {
-    const { tickets, ticketsPerPage, error, currentPage, selectedTicket, totalPages, totalTickets, currentPageTickets } = this.state
+    const { currentPage, totalPages, totalTickets, currentPageTickets, selectedTicket, error, loading } = this.state
     return (
-      <div className="App">
+      <div className="App" id="App">
         <Header />
-        <p>Total Tickets : {totalTickets}</p>
-        <p>Page {currentPage + 1} of {totalPages}</p>
-        {this.renderPaginationView()}
-      </div >
+        {loading ?
+          <img className="loader" src={loader} alt="loading" /> :
+          error ? <ErrorComponenet message={this.state?.error?.message} /> :
+            totalTickets > 0 ?
+              <div>
+                <p>Total Tickets : {totalTickets}</p>
+                {<p>Page {currentPage + 1} of {totalPages}</p>}
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  totalTickets={totalTickets}
+                  onPageChange={this.onPageChange}
+                />
+                <TicketList
+                  currentPageTickets={currentPageTickets}
+                  onClickTicket={this.onClickTicket}
+                />
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  totalTickets={totalTickets}
+                  onPageChange={this.onPageChange}
+                />
+
+                <TicketDetailsModal
+                  selectedTicket={selectedTicket}
+                  resetSelectedTicket={this.resetSelectedTicket}
+                />
+              </div > : <div>
+                <p>{strings.no_tickets}</p>
+              </div>}
+      </div>
     );
   }
 }

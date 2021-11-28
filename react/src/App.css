@@ -28,6 +28,13 @@
   color: #61dafb;
 }
 
+.ticket-item-description{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 5px
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +42,76 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+/* Modal */
+.modal {
+  background: white;
+  border: .5px dotted lightgray;
+  border-radius: 10px;
+  width: 300px;
+  outline: none;
+  padding: 10px;
+  text-align: center;
+  margin-top: -200px;
+  box-shadow: 0px 3px 15px rgba(207, 207, 207, 0.2);
+}
+.ReactModalPortal > div {
+  opacity: 0;
+  z-index: 99
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.button {
+  background: #FCCDBF;
+  border: none;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 200px;
+}
+
+.dotted-line {
+  border-bottom: .5px solid lightgray;
+  padding-bottom: 10px;
+}
+
+.ticket-modal__description {
+  padding: 15px;
+  text-align: left;
+  margin: 10px;
+  border-bottom: 0.5px dotted lightgray;
+}
+
+
+.loader {
+  margin: 200px auto;
+}
+
+
+.error {
+  background: white;
+  border: 2px solid salmon;
+  border-radius: 5px;
+  width: 400px;
+  padding: 5px;
+  margin: 40px auto;
 }

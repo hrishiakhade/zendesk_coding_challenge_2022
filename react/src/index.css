@@ -36,3 +36,7 @@ code {
   user-select: none;
   cursor: pointer;
 }
+
+.error__message {
+  color: red;
+}

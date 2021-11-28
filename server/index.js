@@ -18,7 +18,7 @@ const api = axios.create({
 
 // GET request
 server.get('/', function(req, res) {
-  api.get('/tickets.json?sort_by=status')
+  api.get('/tickets.json')
     .then(function(response) {
       console.log(`Ticket Data recieved, totalling ${response.data.requests.length} tickets` )
       res.send(response.data.requests)
