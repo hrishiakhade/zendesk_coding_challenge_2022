@@ -1,5 +1,31 @@
 # Zendesk coding challenge for summer 2022 internship
 
+## Project Overview
+This project is built using react for front end and node for backend.
+
+### React Frontend :
+ Front end File structure
+.
+
+    ├── src                    
+    │   ├── assets             # All icons 
+    │   ├── components               # Re-use component for project
+            ├── ErrorMsg             # Error component
+            ├── Header               # Zendesk text header compoenent
+            ├── Pagination           # Pagination list view component
+            ├── TicketDetailsModal   # Component for Ticket Details
+            ├── TicketList           # Component for displaying all the tickets in list
+    │   ├── utils             # All helper functions
+            ├── api-helpers          # Contains api's used in the project
+            ├── common-helpers       #  Common functions used
+            ├── constant             #  Contains string constants
+    │   ├── App.css                  # Global styles
+    │   ├── App.js                   # Register route
+    │   └── ...                 
+    └── ...
+
+
+
 ## Installation Guide
 
 ### Step 1: Setting up the project locally - Clone the project:
