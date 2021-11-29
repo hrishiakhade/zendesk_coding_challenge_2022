@@ -7,7 +7,8 @@ This project is built using react for front end and node for backend.
  Front end File structure
 .
 
-    ├── src                    
+    ├── src       
+        ├── __test__            #Unit test
     │   ├── assets             # All icons 
     │   ├── components               # Re-use component for project
             ├── ErrorMsg             # Error component
@@ -44,6 +45,13 @@ The need of a backend that was to request the data from the Zendesk API, then se
 
 
 ### Unit Testing
+
+
+```
+cd react
+npm test
+```
+
 
 ## Installation Guide
 
