@@ -26,9 +26,7 @@ export default class App extends Component {
 
 
   onClickTicket = (ticketData) => {
-    console.log("ticketData===", ticketData);
     this.setState({ selectedTicket: ticketData })
-
   }
 
   componentDidMount() {
@@ -104,7 +102,8 @@ export default class App extends Component {
                   selectedTicket={selectedTicket}
                   resetSelectedTicket={this.resetSelectedTicket}
                 />
-              </div > : <div>
+              </div > :
+              <div style={{ marginTop: '20%' }}>
                 <p>{strings.no_tickets}</p>
               </div>}
       </div>
