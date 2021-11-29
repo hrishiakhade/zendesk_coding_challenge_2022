@@ -42,6 +42,9 @@ For displaying ticket details , we can just show that details that we got in a t
 
 The need of a backend that was to request the data from the Zendesk API, then send it to a React front end. Our backend acts as a API Gateway .This was necessary as cross-domain requests are prevented. I used axios to request the http requests since works on both client and server.
 
+
+### Unit Testing
+
 ## Installation Guide
 
 ### Step 1: Setting up the project locally - Clone the project:
