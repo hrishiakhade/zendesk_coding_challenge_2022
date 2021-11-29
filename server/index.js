@@ -18,13 +18,13 @@ const api = axios.create({
 
 // GET request
 server.get('/', function(req, res) {
-  api.get('/requests.json')
+  api.get('/tickets.json')
     .then(function(response) {
-      console.log(`Ticket Data recieved, totalling ${response.data.requests.length} tickets` )
-      res.send(response.data.requests)
+      console.log(`Ticket Data recieved, totalling ${response.data.tickets.length} tickets` )
+      res.send(response.data.tickets)
     })
     .catch(function(error) {
-      console.log('!!!---Error---!!!')
+      console.log('!!!---Error---!!!',error)
       console.log(`[status: ${error.response.status}] [${error.response.statusText}] [${error.response.data.error}]`)
       res.send(JSON.stringify(error.response.status))
     })
