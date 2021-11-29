@@ -38,6 +38,9 @@ For displaying ticket details , we can just show that details that we got in a t
 - I used axios library to make the API requests from the frontend.
 - I have created component folder to keep all the components used in the app , created utils folder , which contains all the helper functions , api-helpers and string constants.
 
+### Node+Express Backend :
+
+The need of a backend that was to request the data from the Zendesk API, then send it to a React front end. Our backend acts as a API Gateway .This was necessary as cross-domain requests are prevented. I used axios to request the http requests since works on both client and server.
 
 ## Installation Guide
 
