@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import "../../App.css";
 import { formatDate } from "../../utils/common-helpers";
 import strings from "../../utils/constants/strings";
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 
 const customStyles = {
   content: {

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render App correctly 1`] = `
+<div
+  className="App container pt-3 pb-3"
+  id="App"
+>
+  <Header />
+  <img
+    alt="loading"
+    className="loader app-center"
+    src="loader.svg"
+  />
+</div>
+`;
