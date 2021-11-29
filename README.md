@@ -28,6 +28,11 @@ After running react server ,page will redirect to localhost:5000 , the app will 
 
 One of the required functionality for this coding challenge is Pagination. Since we only have small data , I fetched all the tickets at once and stores them . If the limit of items per pages is set to 25 , all the stored tickets will get divided such that each page contains no more than 25 tickets . I have implemented pagination locally from front end only .  One of the Major drawback of this approach is , stored tickets wont be updated . If a certain tickets is edited/deleted/added from the ZendDesk dashboard , then the updated ticket wont get reflected on our frontend since we fetched all the data once , it will keep us showing data that was fetched initially . In order to fetch the latest data , we will need to refresh our page everytime.
 
+In order to avoid the issue faced by fetching all the tickets at once , we can use ``` GET /api/v2/tickets.json?page[size]=25 ``` , it will only fetch first 25 records , and in order to fetch next page data you can either opt-in for cursor pagination or offeset pagination . Cursor pagination is better than offset pagination. But one of the drawback of cursor pagination is You can not jump from pages , eg. from page 1 to page 5 or page 4 to page 2. Cursor pagination will fetch data sequentially only . Using either of these approach will ensure that we fetch latest data from server . 
+
+For displaying ticket details , we can just show that details that we got in a ticket list . But again to handle dynamic data change , it is always better to use ``` GET /api/v2/tickets/{ticket_id} ``` , which will fetch the latest data a selected ticket.
+
+
 - For the scalability, React and Redux would make a good choice. But I did not use redux in this proect since this is a really simple app with small amount of data. Redux makes the state management better. 
 - For styling, I used common CSS file app.css . I also used Bootstrap to make the webpage reponsive.
 - I used axios library to make the API requests from the frontend.
